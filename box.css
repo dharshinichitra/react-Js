@@ -1,0 +1,17 @@
+.light{
+    border:2px solid beige;
+    color:rebeccapurple;
+    padding:20px;
+    height: 250px;
+    width: 300px;
+}
+
+.dark{
+    border: 2px soild gold;
+    background-color: black;
+    color: white;
+    padding:20px;
+    height: 250px;
+    width: 300px;
+
+}
