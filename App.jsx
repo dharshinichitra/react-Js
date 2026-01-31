@@ -1,24 +1,42 @@
-import "./box.css";
-import { useState} from "react";
+import { useState } from 'react';
+import './App.css';
 
-function App() {
-  const[color , setColor] = useState("gray")
+function App(){
+  const [task, setTask]=useState("");
+  const [todos,setTodos]=useState([]);
 
-  return (
+  const addtodo =() =>{
+    const trimmed=task.trim();
+    if(!trimmed) return;
+    setTodos((prev)=>[...prev, {id: crypto.randomUUID(),text: trimmed}])
+    setTask("")
+
+  }
+  const deletetodo=(id)=>{
+    setTodos((prev)=>prev.filter((t)=>t.id !== id));
+  }
+  return(
     <>
-     
-    <h1>Color picker in react</h1>
-      <div style={{
-        height:"200px",
-        width:"200px",
-        border:"2px soild black",
-        background: color
+    <h1>Todo list</h1>
+    <input type="text" value ={task} onChange={(e)=>setTask(e.target.value)} placeholder='Type a task....'/>
+    <button onClick={addtodo}>Add</button>
+    <ul>
+      {todos.map((t)=>(
+        <li key={t.id}>
+          {t.text}
+          <button onClick={()=> deletetodo(t.id)}> Delete</button>
+          
+           
+        </li>
+      ))
 
-      }}></div>
-      <button onClick={()=>setColor("red")}>red</button>
-      <button onClick={()=>setColor("black")}> black</button>
+      }
+    </ul>
+      
+
+
+
     </>
   )
-}
-
+  }
 export default App
